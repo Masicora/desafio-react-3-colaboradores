@@ -5,13 +5,17 @@ const TablaColaborador = (props) => {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>Identificador</th>
                     <th>Nombre Colaborador</th>
                     <th>Email Colaborador</th>
                 </tr>
             </thead>
             <tbody>
-                {props.Colaboradores.map((Colaborador) => (
+                {props.Colaboradores.filter((val) => {
+                    if (val.nombre.toLowerCase().includes(props.filtrado.toLowerCase())) {
+                        return val;
+                    }
+                }).map((Colaborador) => (
                     <tr key={Colaborador.id}>
                         <td>{Colaborador.id}</td>
                         <td>{Colaborador.nombre}</td>
