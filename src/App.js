@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import BaseColaboradores from './BaseColaboradores';
+import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import FormColaborador from './components/FormColaborador';
+import TablaColaborador from './components/TablaColaborador';
 
 function App() {
+
+  const [Colaboradores, setColaboradores] = useState(BaseColaboradores);
+
+  const guardarColaborador = (Colaborador) => {
+    setColaboradores([...Colaboradores, Colaborador]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <FormColaborador
+        guardarColaborador={guardarColaborador}
+      />
+      <TablaColaborador
+        Colaboradores={Colaboradores}
+      />
+    </>
   );
+
 }
 
 export default App;
